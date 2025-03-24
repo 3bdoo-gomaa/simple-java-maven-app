@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build jar') {
             steps {
-                scripts {
+                script {
                     echo "building the application"
                     sh ' mvn package'
 
@@ -15,7 +15,7 @@ pipeline {
         }   
         stage('Build image') {
             steps {
-                scripts {
+                script {
                     echo "building the docker image"
                     WithCredentials([UsernamePassword(credentialsId: 'docker-credential', passwordVariable: 'PASS',usernameVariable: 'USER')])
                     sh ' docker build -t abdogom22/maven-app .'
@@ -28,7 +28,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                scripts{
+                script{
                     echo ' Deploying the app...'
 
                 }
